@@ -1,0 +1,10 @@
+type Launch {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type Query {
+  launchById(id: ID!): Launch
+    @rest(endpoint: "https://api.spacexdata.com/v4/launches/past")
+}
