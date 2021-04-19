@@ -1,0 +1,10 @@
+type Rocket {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type Query {
+  rocketById(id: ID!): Rocket
+    @rest(endpoint: "https://api.spacexdata.com/v4/rockets/$id")
+}
