@@ -1,3 +1,0 @@
-schema @sdl(files: ["rocket/rocket.graphql"]) {
-  query: Query
-}
