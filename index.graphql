@@ -1,9 +1,0 @@
-schema
-  @sdl(
-    files: [
-      "hello-rocket/rocket/rocket.graphql"
-      "hello-launch/launch/launch.graphql"
-    ]
-  ) {
-  query: Query
-}

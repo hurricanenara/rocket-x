@@ -1,0 +1,57 @@
+type Launch {
+  id: ID!
+  date_utc: String!
+  links: String!
+  rocketId: ID!
+  rocket: Rocket
+    @materializer(
+      query: "rocket"
+      arguments: [{ name: "id", field: "rocketId" }]
+    )
+}
+
+type Image {
+  links: String
+}
+
+type Query {
+  # launch(id: ID!): Launch
+  getLaunches: [Launch]
+    @rest(
+      setters: [{ field: "rocketId", path: "rocket" }]
+      # endpoint: "https://api.spacexdata.com/v4/launches/$id"
+      endpoint: "https://api.spacexdata.com/v4/launches"
+    )
+  getImage: [Image]
+    @rest(
+      resultroot: "links.patch.small[]"
+      # endpoint: "https://api.spacexdata.com/v4/launches/$id"
+      endpoint: "https://api.spacexdata.com/v4/launches"
+    )
+}
+
+# type Launch {
+#   id: ID!
+#   date_utc: String!
+#   #   rocket: String!
+#   rocket: [Rocket] @materializer(query: "rocket")
+# }
+
+# type Query {
+#   launch(id: ID!): Launch
+#     @rest(
+#       # setters: [{ field: "rocket", path: "rocket.name" }]
+#       endpoint: "https://api.spacexdata.com/v4/launches/$id"
+#     )
+# }
+
+# type Rocket {
+#   id: ID!
+#   name: String!
+#   description: String!
+# }
+
+# type Query {
+#   rocketById(id: ID!): Rocket
+#     @rest(endpoint: "https://api.spacexdata.com/v4/rockets/$id")
+# }

@@ -1,0 +1,25 @@
+type Rocket {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type Query {
+  rocket(id: ID!): Rocket
+    @rest(endpoint: "https://api.spacexdata.com/v4/rockets/$id")
+}
+
+# type Rocket {
+#   id: ID!
+#   name: String!
+#   description: String!
+# }
+
+# type Query {
+#   rocket(id: ID!): [Rocket]
+#     @rest(
+#       setters: [{ field: "name", path: "rocket.name" }]
+#       # resultroot: "rocket[]"
+#       endpoint: "https://api.spacexdata.com/v4/rockets/$id"
+#     )
+# }
