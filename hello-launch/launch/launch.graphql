@@ -1,8 +1,8 @@
 type Launch {
   id: ID!
   date_utc: String!
-  #   rocket: String!
-  rocket: [Rocket] @materializer(query: "rocket")
+    rocket: String!
+  # rocket: Rocket @materializer(query: "rocket")
 }
 
 type Query {

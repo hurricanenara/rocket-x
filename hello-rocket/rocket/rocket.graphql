@@ -5,9 +5,9 @@ type Rocket {
 }
 
 type Query {
-  rocket(id: ID!): [Rocket]
+  rocket(id: ID!): Rocket
     @rest(
-      setters: [{ field: "name", path: "rocket.name" }]
+      # setters: [{ field: "name", path: "rocket.name" }]
       # resultroot: "rocket[]"
       endpoint: "https://api.spacexdata.com/v4/rockets/$id"
     )
