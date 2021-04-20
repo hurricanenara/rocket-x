@@ -1,14 +1,15 @@
 type Launch {
   id: ID!
   date_utc: String!
-    rocket: String!
-  # rocket: Rocket @materializer(query: "rocket")
+  rocketId: ID!
+  rocket: Rocket 
+  @materializer(query: "rocket" arguments:[{name: "id" field: "rocketId"}])
 }
 
 type Query {
   launch(id: ID!): Launch
     @rest(
-      # setters: [{ field: "rocket", path: "rocket.name" }]
+      setters: [{ field: "rocketId", path: "rocket" }]
       endpoint: "https://api.spacexdata.com/v4/launches/$id"
     )
 }
