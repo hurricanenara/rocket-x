@@ -2,11 +2,17 @@ type Rocket {
   id: ID!
   name: String!
   description: String!
+  image: String
 }
 
 type Query {
   rocket(id: ID!): Rocket
     @rest(endpoint: "https://api.spacexdata.com/v4/rockets/$id")
+  getRockets: [Rocket]
+    @rest(
+      setters: [{ field: "image", path: "flickr_images[0]" }]
+      endpoint: "https://api.spacexdata.com/v4/rockets/"
+    )
 }
 
 # type Rocket {

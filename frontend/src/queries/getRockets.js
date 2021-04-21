@@ -1,11 +1,12 @@
 import gql from "graphql-tag";
 
-export const GET_LAUNCHES_QUERY = gql`
+export const GET_ROCKETS_QUERY = gql`
   query getLaunches {
-    getLaunches {
+    getRockets {
       id
+      name
+      description
       image
-      details
     }
   }
 `;

@@ -1,7 +1,8 @@
 type Launch {
   id: ID!
   date_utc: String!
-  links: String!
+  details: String
+  image: String
   rocketId: ID!
   rocket: Rocket
     @materializer(
@@ -10,26 +11,20 @@ type Launch {
     )
 }
 
-type Image {
-  links: String
-}
-
+# type Image {
+#   link: String
+# }
 type Query {
-  # launch(id: ID!): Launch
   getLaunches: [Launch]
     @rest(
-      setters: [{ field: "rocketId", path: "rocket" }]
-      # endpoint: "https://api.spacexdata.com/v4/launches/$id"
-      endpoint: "https://api.spacexdata.com/v4/launches"
-    )
-  getImage: [Image]
-    @rest(
-      resultroot: "links.patch.small[]"
-      # endpoint: "https://api.spacexdata.com/v4/launches/$id"
+      # resultroot: //??
+      setters: [
+        { field: "rocketId", path: "rocket" }
+        { field: "image", path: "links.patch.small" }
+      ]
       endpoint: "https://api.spacexdata.com/v4/launches"
     )
 }
-
 # type Launch {
 #   id: ID!
 #   date_utc: String!

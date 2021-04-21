@@ -1,23 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled, { createGlobalStyle } from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_LAUNCHES_QUERY } from "../../queries/getLaunches";
+import LazyImage from "../UI/LazyImage";
+import Spinner from "../UI/Spinner";
+
+const Global = createGlobalStyle`
+  body {
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+`;
+
+const StyledDiv = styled.div`
+  color: #afbac5;
+  font-size: 18px;
+  position: relative;
+`;
+
+const Grid = styled.div`
+  position: relative;
+  margin-left: 10px;
+  display: grid;
+  padding: 16px;
+  grid-template-columns: repeat(auto-fit, 205px);
+  grid-gap: 16px;
+`;
 
 const Launches = () => {
+  const [launches, setLaunches] = useState([]);
   const { data, loading, error } = useQuery(GET_LAUNCHES_QUERY);
-  // console.log(data.getLaunches);
-  // const launches = data.getLaunches.slice(10);
-  if (loading) return <p>Loading...</p>;
+
+  useEffect(() => {
+    if (data) {
+      setLaunches(data.getLaunches.slice(0, 100));
+    }
+  }, [data]);
+
+  if (loading) return <Spinner />;
   if (error) return <p>{error.message}</p>;
 
-  const launches = data.getLaunches.slice(0, 10);
-  console.log(launches.length);
   return (
     <div>
-      <ul>
+      {/* {nothing} */}
+      <Global />
+      <Grid>
         {launches.map((launch) => {
-          return <li key={launch.id}>{launch.id}</li>;
+          return (
+            <StyledDiv key={launch.id}>
+              <LazyImage
+                src={launch.image}
+                alt={launch.details ? launch.details : "null"}
+              />
+            </StyledDiv>
+          );
         })}
-      </ul>
+      </Grid>
     </div>
   );
 };
