@@ -3,9 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { ApolloProvider as ApolloHooksProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "@apollo/react-hooks";
 // import { ApolloProvider } from "@apollo/client/react";
-import { gql } from "@apollo/client";
 
 const { REACT_APP_STEPZEN_API_KEY, REACT_APP_STEPZEN_URI } = process.env;
 console.log(REACT_APP_STEPZEN_API_KEY);
@@ -25,9 +24,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloHooksProvider client={client}>
+    <ApolloProvider client={client}>
       <App />
-    </ApolloHooksProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
