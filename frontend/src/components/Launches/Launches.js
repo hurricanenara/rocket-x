@@ -25,7 +25,7 @@ const Grid = styled.div`
   display: grid;
   padding: 16px;
   grid-template-columns: repeat(auto-fit, 205px);
-  grid-gap: 16px;
+  grid-gap: 25px;
 `;
 
 const Launches = () => {
