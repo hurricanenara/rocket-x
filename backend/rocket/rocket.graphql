@@ -1,12 +1,14 @@
 type Rocket {
-  id: ID!
+  id: String!
   name: String!
   description: String!
   image: String
+  success_rate_pct: String!
+  cost_per_launch: String!
 }
 
 type Query {
-  rocket(id: ID!): Rocket
+  rocket(id: String!): Rocket
     @rest(endpoint: "https://api.spacexdata.com/v4/rockets/$id")
   getRockets: [Rocket]
     @rest(

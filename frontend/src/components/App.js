@@ -12,14 +12,16 @@ import Launches from "./Launches/Launches";
 import Logo from "./Logo/Logo";
 import Rockets from "./Rockets/Rockets";
 import Home from "./Home/Home";
+import Launch from "./Launches/Launch";
 
 function App() {
   return (
     <div className="App">
       <HashRouter>
         <Switch>
-          <Route path="/launches" component={Launches} />
-          <Route path="/rockets" component={Rockets} />
+          <Route exact path="/launches" component={Launches} />
+          <Route exact path="/rockets" component={Rockets} />
+          <Route exact path="/launches/:id" component={Launch} />
           <Route path="/" component={Home} />
         </Switch>
       </HashRouter>

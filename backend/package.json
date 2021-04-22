@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/hurricanenara/rocket-x/issues"
   },
-  "homepage": "https://github.com/hurricanenara/rocket-x#readme"
+  "homepage": "https://github.com/hurricanenara/rocket-x#readme",
+  "dependencies": {
+    "numeral": "^2.0.6",
+    "react-player": "^2.9.0"
+  }
 }

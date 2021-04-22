@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_LAUNCHES_QUERY } from "../../queries/getLaunches";
@@ -17,6 +18,7 @@ const StyledDiv = styled.div`
   color: #afbac5;
   font-size: 18px;
   position: relative;
+  cursor: pointer;
 `;
 
 const Grid = styled.div`
@@ -29,6 +31,7 @@ const Grid = styled.div`
 `;
 
 const Launches = () => {
+  let history = useHistory();
   const [launches, setLaunches] = useState([]);
   const { data, loading, error } = useQuery(GET_LAUNCHES_QUERY);
 
@@ -38,17 +41,21 @@ const Launches = () => {
     }
   }, [data]);
 
+  const clickHandler = (id) => {
+    debugger;
+    history.push(`/launches/${id}`);
+  };
+
   if (loading) return <Spinner />;
   if (error) return <p>{error.message}</p>;
 
   return (
     <div>
-      {/* {nothing} */}
       <Global />
       <Grid>
         {launches.map((launch) => {
           return (
-            <StyledDiv key={launch.id}>
+            <StyledDiv onClick={() => clickHandler(launch.id)} key={launch.id}>
               <LazyImage
                 src={launch.image}
                 alt={launch.details ? launch.details : "null"}
