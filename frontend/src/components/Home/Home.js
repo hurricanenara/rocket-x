@@ -10,9 +10,9 @@ const Home = () => {
         Launches
       </NavLink>
       <Logo />
-      <NavLink className="menu" to="/rockets">
+      {/* <NavLink className="menu" to="/rockets">
         Rockets
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 };
